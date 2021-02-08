@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dat3-onionarch:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>dat3-onionarch</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="dat3-onionarch-1.0.war">
+      <element id="artifact" artifact-name="dat3-onionarch:war exploded" />
+    </root>
+  </artifact>
+</component>

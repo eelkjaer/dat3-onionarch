@@ -2,13 +2,15 @@ package infrastructure;
 
 import domain.customer.CustomerDTO;
 import domain.customer.Customer;
+import domain.customer.CustomerException;
+import domain.customer.CustomerRepository;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 
-public class CustomerFacade {
+public class CustomerFacade implements CustomerRepository {
 
   private static CustomerFacade instance;
   private static EntityManagerFactory emf;
@@ -32,7 +34,41 @@ public class CustomerFacade {
     return emf.createEntityManager();
   }
 
-  public CustomerDTO getCustomerById(long id) {
+
+  @Override
+  public List<CustomerDTO> getAllCustomers() {
+    boolean authorized = true;
+    if (authorized) {
+      EntityManager em = emf.createEntityManager();
+      try {
+        TypedQuery<Customer> query =
+            em.createQuery("SELECT BANKCUSTOMER FROM Customer bankCustomer", Customer.class);
+        return CustomerDTO.getAllBankCustomersDTO(query.getResultList());
+      } finally {
+        em.close();
+      }
+    }
+    return new ArrayList<>();
+  }
+
+
+  @Override
+  public List<CustomerDTO> getCustomersByName(String name) {
+    EntityManager em = emf.createEntityManager();
+    try {
+      TypedQuery<Customer> query =
+          em.createQuery(
+              "SELECT BANKCUSTOMER FROM Customer bankCustomer WHERE BANKCUSTOMER.firstName = :name",
+              Customer.class)
+              .setParameter("name", name);
+      return CustomerDTO.getAllBankCustomersDTO(query.getResultList());
+    } finally {
+      em.close();
+    }
+  }
+
+  @Override
+  public CustomerDTO getCustomerById(int id) throws CustomerException {
     EntityManager em = emf.createEntityManager();
     try {
       CustomerDTO customerDTO = new CustomerDTO(em.find(Customer.class, id));
@@ -42,28 +78,14 @@ public class CustomerFacade {
     }
   }
 
-  public List<CustomerDTO> getCustomerByName(String name) {
-    EntityManager em = emf.createEntityManager();
-    try {
-      TypedQuery<Customer> query =
-          em.createQuery(
-                  "SELECT BANKCUSTOMER FROM BankCustomer bankCustomer WHERE BANKCUSTOMER.firstName = :name",
-                  Customer.class)
-              .setParameter("name", name);
-      List<Customer> bankCustomers = query.getResultList();
-      return CustomerDTO.getAllBankCustomersDTO(bankCustomers);
-    } finally {
-      em.close();
-    }
-  }
-
-  public Customer addCustomer(Customer customer) {
+  @Override
+  public Customer createCustomer(CustomerDTO customerdto) throws CustomerException {
     boolean authorized = true;
     if (authorized) {
       EntityManager em = emf.createEntityManager();
       try {
         em.getTransaction().begin();
-        em.persist(customer);
+        em.persist(customerdto);
         em.getTransaction().commit();
       } finally {
         em.close();
@@ -72,18 +94,13 @@ public class CustomerFacade {
     return null;
   }
 
-  public List<Customer> getAllCustomers() {
-    boolean authorized = true;
-    if (authorized) {
-      EntityManager em = emf.createEntityManager();
-      try {
-        TypedQuery<Customer> query =
-            em.createQuery("SELECT BANKCUSTOMER FROM BankCustomer bankCustomer", Customer.class);
-        return query.getResultList();
-      } finally {
-        em.close();
-      }
-    }
-    return new ArrayList<>();
+  @Override
+  public void updateCustomer(CustomerDTO customer) throws CustomerException {
+
+  }
+
+  @Override
+  public void deleteCustomer(CustomerDTO customer) throws CustomerException {
+
   }
 }
