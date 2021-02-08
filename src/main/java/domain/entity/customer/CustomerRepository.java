@@ -1,5 +1,6 @@
-package domain.customer;
+package domain.entity.customer;
 
+import domain.dto.customer.CustomerDTO;
 import java.util.List;
 
 public interface CustomerRepository extends CustomerFactory {

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package domain.customer;
+package domain.entity.customer;
 
 /** @author emilelkjaernielsen */
 public class CustomerException extends Exception {

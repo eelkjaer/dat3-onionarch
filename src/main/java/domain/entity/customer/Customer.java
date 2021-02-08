@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package domain.customer;
+package domain.entity.customer;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

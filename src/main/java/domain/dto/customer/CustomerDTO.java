@@ -1,5 +1,6 @@
-package domain.customer;
+package domain.dto.customer;
 
+import domain.entity.customer.Customer;
 import java.util.ArrayList;
 import java.util.List;
 
