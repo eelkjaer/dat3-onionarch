@@ -15,23 +15,14 @@ import javax.persistence.Id;
 public class Customer {
 
   private static final int serialVersionUID = 1;
-
-  public enum Ranking {
-    Low,
-    Medium,
-    High
-  }
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
-
   private final String firstName;
   private final String lastName;
   private final int accountNumber;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
   private double balance;
   private Enum<Ranking> customerRanking;
-
   public Customer(
       int id,
       String firstName,
@@ -64,6 +55,10 @@ public class Customer {
     return id;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
+
   public String getFirstName() {
     return firstName;
   }
@@ -80,16 +75,12 @@ public class Customer {
     return balance;
   }
 
-  public Enum<Ranking> getCustomerRanking() {
-    return customerRanking;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
   public void setBalance(double balance) {
     this.balance = balance;
+  }
+
+  public Enum<Ranking> getCustomerRanking() {
+    return customerRanking;
   }
 
   public void setCustomerRanking(Enum<Ranking> customerRanking) {
@@ -107,5 +98,11 @@ public class Customer {
     sb.append(", customerRanking=").append(customerRanking);
     sb.append('}');
     return sb.toString();
+  }
+
+  public enum Ranking {
+    Low,
+    Medium,
+    High
   }
 }

@@ -1,7 +1,7 @@
 package infrastructure;
 
-import domain.customer.CustomerDTO;
 import domain.customer.Customer;
+import domain.customer.CustomerDTO;
 import domain.customer.CustomerException;
 import domain.customer.CustomerRepository;
 import java.util.ArrayList;
@@ -34,7 +34,6 @@ public class CustomerFacade implements CustomerRepository {
     return emf.createEntityManager();
   }
 
-
   @Override
   public List<CustomerDTO> getAllCustomers() {
     boolean authorized = true;
@@ -51,15 +50,14 @@ public class CustomerFacade implements CustomerRepository {
     return new ArrayList<>();
   }
 
-
   @Override
   public List<CustomerDTO> getCustomersByName(String name) {
     EntityManager em = emf.createEntityManager();
     try {
       TypedQuery<Customer> query =
           em.createQuery(
-              "SELECT BANKCUSTOMER FROM Customer bankCustomer WHERE BANKCUSTOMER.firstName = :name",
-              Customer.class)
+                  "SELECT BANKCUSTOMER FROM Customer bankCustomer WHERE BANKCUSTOMER.firstName = :name",
+                  Customer.class)
               .setParameter("name", name);
       return CustomerDTO.getAllBankCustomersDTO(query.getResultList());
     } finally {
@@ -95,12 +93,8 @@ public class CustomerFacade implements CustomerRepository {
   }
 
   @Override
-  public void updateCustomer(CustomerDTO customer) throws CustomerException {
-
-  }
+  public void updateCustomer(CustomerDTO customer) throws CustomerException {}
 
   @Override
-  public void deleteCustomer(CustomerDTO customer) throws CustomerException {
-
-  }
+  public void deleteCustomer(CustomerDTO customer) throws CustomerException {}
 }
