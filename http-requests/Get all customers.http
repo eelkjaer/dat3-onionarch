@@ -1,0 +1,2 @@
+GET /dat3_onionarch/api/customer/all HTTP/1.1
+Host: localhost:8080

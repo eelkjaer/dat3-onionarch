@@ -2,6 +2,7 @@ package api;
 
 import static api.Utils.GSON;
 
+import domain.dto.customer.CustomerDTO;
 import domain.dto.customer.CustomerDTOException;
 import domain.dto.customer.CustomerDTORepository;
 import domain.entity.customer.Customer;
@@ -25,8 +26,10 @@ public class Api {
     return GSON.toJson(customerRepository.getCustomerById(id));
   }
 
-  public void createCustomer(Customer customer) throws CustomerException {
-    customerRepository.createCustomer(customer);
+  public void createCustomer(String customerJson) throws CustomerException {
+    customerRepository.createCustomer(
+        GSON.fromJson(customerJson, Customer.class)
+    );
   }
 
 }

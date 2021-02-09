@@ -1,0 +1,11 @@
+POST /dat3_onionarch/api/customer/create HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 105
+
+{
+  "firstName": "anders",
+  "lastName": "nielsen",
+  "accountNumber": 5678,
+  "balance": 100.0
+}

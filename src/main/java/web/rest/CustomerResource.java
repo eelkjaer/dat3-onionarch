@@ -1,5 +1,6 @@
 package web.rest;
 
+import domain.dto.customer.CustomerDTO;
 import domain.dto.customer.CustomerDTOException;
 import domain.entity.customer.Customer;
 import domain.entity.customer.CustomerException;
@@ -57,10 +58,8 @@ public class CustomerResource extends BaseResource {
   //@RolesAllowed("ADMIN")
   @POST
   @Produces({MediaType.APPLICATION_JSON})
-  public Response createNewCustomer(String fullname) throws CustomerException {
-    String names[] = fullname.split(" ");
-    Customer testCustOne = new Customer(names[0], names[1], 1234, 100);
-    API.createCustomer(testCustOne);
-    return Response.status(200).entity(null).build();
+  public void createNewCustomer(String customer) throws CustomerException {
+    API.createCustomer(customer);
+    //return Response.status(200).entity(null).build();
   }
 }
