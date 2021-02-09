@@ -1,7 +1,6 @@
 package api;
+import static api.Utils.GSON;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import domain.dto.customer.CustomerDTOException;
 import domain.dto.customer.CustomerDTORepository;
 import domain.entity.customer.CustomerException;
@@ -11,9 +10,6 @@ import javax.ws.rs.core.Application;
 
 @javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
-
-  public final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
   private final CustomerRepository customerRepository;
   private final CustomerDTORepository customerDTORepository;
 
@@ -23,11 +19,11 @@ public class ApplicationConfig extends Application {
   }
 
   public String getAllCustomers() throws CustomerException {
-    return gson.toJson(customerRepository.getAllCustomers());
+    return GSON.toJson(customerRepository.getAllCustomers());
   }
 
   public String getCustomerById(int id) throws CustomerDTOException, CustomerException {
-    return gson.toJson(customerRepository.getCustomerById(id));
+    return GSON.toJson(customerRepository.getCustomerById(id));
   }
 
   public boolean createCustomer() {
