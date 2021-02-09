@@ -5,6 +5,8 @@
   </a>
 </p>
 
+[![Build Status](https://travis-ci.com/eelkjaer/dat3-onionarch.svg?branch=main)](https://travis-ci.com/eelkjaer/dat3-onionarch)
+
 ## Usage
 
 ```sh
