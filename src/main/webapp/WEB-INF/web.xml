@@ -2,24 +2,24 @@
 <web-app>
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>Customer creation</web-resource-name>
-      <url-pattern>/api/customer/create</url-pattern>
       <http-method>POST</http-method>
+      <url-pattern>/api/customer/create</url-pattern>
+      <web-resource-name>Customer creation</web-resource-name>
     </web-resource-collection>
-<!--    <auth-constraint>-->
-<!--      <role-name>admin</role-name>-->
-<!--    </auth-constraint>-->
-<!--    <user-data-constraint>-->
-<!--      <transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
-<!--    </user-data-constraint>-->
+    <!--    <auth-constraint>-->
+    <!--      <role-name>admin</role-name>-->
+    <!--    </auth-constraint>-->
+    <!--    <user-data-constraint>-->
+    <!--      <transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
+    <!--    </user-data-constraint>-->
   </security-constraint>
 
-<!--  <login-config>-->
-<!--    <auth-method>BASIC</auth-method>-->
-<!--  </login-config>-->
+  <!--  <login-config>-->
+  <!--    <auth-method>BASIC</auth-method>-->
+  <!--  </login-config>-->
 
-<!--  <security-role>-->
-<!--    <role-name>admin</role-name>-->
-<!--  </security-role>-->
+  <!--  <security-role>-->
+  <!--    <role-name>admin</role-name>-->
+  <!--  </security-role>-->
 
 </web-app>

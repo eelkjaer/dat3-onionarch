@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface CustomerDTORepository extends CustomerDTOFactory {
 
-  List<CustomerDTO> getAllCustomers() throws CustomerDTOException;
+  List<CustomerDTO> getAllCustomerDTOs() throws CustomerDTOException;
 
   CustomerDTO getCustomerById(int id) throws CustomerDTOException;
 

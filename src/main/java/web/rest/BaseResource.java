@@ -2,14 +2,14 @@ package web.rest;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-import api.Api;
-import api.utils.EmfCreator;
+import api.ApplicationConfig;
+import infrastructure.EmfCreator;
 import javax.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
 
 public class BaseResource {
   private static final Logger log = getLogger(BaseResource.class);
-  protected static Api API;
+  protected static ApplicationConfig API;
 
   static {
     try {
@@ -21,7 +21,7 @@ public class BaseResource {
 
   protected BaseResource() {}
 
-  private static Api createBaseApi(EntityManagerFactory emf) {
-    return new Api(emf);
+  private static ApplicationConfig createBaseApi(EntityManagerFactory emf) {
+    return new ApplicationConfig(emf);
   }
 }

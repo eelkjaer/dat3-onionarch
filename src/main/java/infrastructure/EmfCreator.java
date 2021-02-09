@@ -1,4 +1,4 @@
-package api.utils;
+package infrastructure;
 
 import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
@@ -6,8 +6,7 @@ import javax.persistence.Persistence;
 
 public class EmfCreator {
 
-  private EmfCreator() {
-  }
+  private EmfCreator() {}
 
   /**
    * Call this method before all integration tests that uses the Grizzly Server and the Test

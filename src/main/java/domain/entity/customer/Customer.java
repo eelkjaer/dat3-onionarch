@@ -1,5 +1,6 @@
 package domain.entity.customer;
 
+import domain.dto.customer.CustomerDTO;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -60,6 +61,16 @@ public class Customer {
     this.accountNumber = accountNumber;
     this.balance = balance;
     this.customerRanking = customerRanking;
+  }
+
+  public Customer(CustomerDTO dto, Enum<Ranking> ranking) {
+    String names[] = dto.getFullName().split(" ");
+    this.firstName = names[0];
+    this.lastName = names[1];
+    this.accountNumber = dto.getAccountNumber();
+    this.id = dto.getCustomerId();
+    this.balance = dto.getBalance();
+    this.customerRanking = ranking;
   }
 
   public int getId() {

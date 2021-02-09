@@ -1,6 +1,7 @@
 package web.rest;
 
 import domain.dto.customer.CustomerDTOException;
+import domain.entity.customer.CustomerException;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -36,14 +37,15 @@ public class CustomerResource extends BaseResource {
   @Path("{id}")
   @GET
   @Produces({MediaType.APPLICATION_JSON})
-  public String getCustomerById(@PathParam("id") int id) throws CustomerDTOException {
+  public String getCustomerById(@PathParam("id") int id)
+      throws CustomerDTOException, CustomerException {
     return API.getCustomerById(id);
   }
 
   @Path("all")
   @GET
   @Produces({MediaType.APPLICATION_JSON})
-  public String getAllCustomers() {
+  public String getAllCustomers() throws CustomerException {
     return API.getAllCustomers();
   }
 
