@@ -1,9 +1,9 @@
 package infrastructure;
 
+import domain.dto.customer.CustomerDTO;
 import domain.dto.customer.CustomerDTOException;
 import domain.dto.customer.CustomerDTORepository;
 import domain.entity.customer.Customer;
-import domain.dto.customer.CustomerDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,16 +14,15 @@ public class CustomerFacade implements CustomerDTORepository {
 
   private final EntityManager em;
 
-  private final boolean authorized = true;
+  private static final boolean authorized = true;
 
   public CustomerFacade(EntityManagerFactory emf) {
     this.em = emf.createEntityManager();
   }
 
-
   @Override
   public List<CustomerDTO> getAllCustomers() {
-    if (this.authorized) {
+    if (authorized) {
       try {
         TypedQuery<Customer> query =
             em.createQuery("SELECT BANKCUSTOMER FROM Customer bankCustomer", Customer.class);
@@ -59,8 +58,13 @@ public class CustomerFacade implements CustomerDTORepository {
   }
 
   @Override
+  public CustomerDTO createCustomerDTOFromCustomer(Customer customer) throws CustomerDTOException {
+    return new CustomerDTO(customer);
+  }
+
+  @Override
   public CustomerDTO createCustomer(CustomerDTO customerdto) throws CustomerDTOException {
-    if (this.authorized) {
+    if (authorized) {
       try {
         em.getTransaction().begin();
         em.persist(customerdto);

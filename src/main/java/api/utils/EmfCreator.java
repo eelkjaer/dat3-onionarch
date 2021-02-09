@@ -5,6 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class EmfCreator {
+
+  private EmfCreator() {
+  }
+
   /**
    * Call this method before all integration tests that uses the Grizzly Server and the Test
    * Database (in @BeforeAll ) Remember to call enRestTestWithDB() in @AfterAll

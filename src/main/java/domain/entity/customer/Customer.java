@@ -1,27 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package domain.entity.customer;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "customer")
 public class Customer {
 
   private static final int serialVersionUID = 1;
+
+  @Column(name = "firstname", length = 75, nullable = false, unique = false)
   private String firstName;
+
+  @Column(name = "lastname", length = 75, nullable = false, unique = false)
   private String lastName;
+
+  @Column(name = "accountnumber", length = 75, nullable = false, unique = true)
   private int accountNumber;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
+
+  @Column(name = "balance", length = 75, nullable = false, unique = false)
   private double balance;
+
+  @Column(name = "ranking", length = 10, nullable = false, unique = false)
   private Enum<Ranking> customerRanking;
 
   public Customer(
@@ -39,10 +47,10 @@ public class Customer {
     this.customerRanking = customerRanking;
   }
 
-  public Customer() {
-  }
+  public Customer() {}
 
-  public Customer(String firstName,
+  public Customer(
+      String firstName,
       String lastName,
       int accountNumber,
       double balance,

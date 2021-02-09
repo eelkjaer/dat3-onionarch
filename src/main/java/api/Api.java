@@ -25,9 +25,8 @@ public class Api {
     return gson.toJson(customerFacade.getCustomerById(id));
   }
 
-  public boolean createCustomer(){
-    //TODO: Implement code
-    boolean created = false;
-    return created;
+  public boolean createCustomer() {
+    // TODO: Implement code
+    return false;
   }
 }

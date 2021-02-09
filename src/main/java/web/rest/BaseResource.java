@@ -9,24 +9,19 @@ import org.slf4j.Logger;
 
 public class BaseResource {
   private static final Logger log = getLogger(BaseResource.class);
-
-  public BaseResource() {
-  }
-
-  protected static  Api API;
+  protected static Api API;
 
   static {
-    try{
+    try {
       API = createBaseApi(EmfCreator.createEntityManagerFactory());
-    } catch (Exception e){
+    } catch (Exception e) {
       log.error(e.getMessage());
     }
   }
 
+  protected BaseResource() {}
+
   private static Api createBaseApi(EntityManagerFactory emf) {
     return new Api(emf);
   }
-
-
-
 }
