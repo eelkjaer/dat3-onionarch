@@ -13,10 +13,11 @@ import javax.persistence.TypedQuery;
 public class DBCustomer implements CustomerRepository {
 
   private static final boolean authorized = true;
+  private final EntityManagerFactory emf;
   private EntityManager em;
 
   public DBCustomer(EntityManagerFactory emf) {
-    this.em = emf.createEntityManager();
+    this.emf = emf;
   }
 
   @Override
@@ -28,6 +29,7 @@ public class DBCustomer implements CustomerRepository {
   public Customer createCustomer(Customer customer) throws CustomerException {
     if (authorized) {
       try {
+        em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(customer);
         em.getTransaction().commit();
@@ -42,6 +44,7 @@ public class DBCustomer implements CustomerRepository {
   public List<Customer> getAllCustomers() throws CustomerException {
     if (authorized) {
       try {
+        em = emf.createEntityManager();
         TypedQuery<Customer> query =
             em.createQuery("SELECT BANKCUSTOMER FROM Customer bankCustomer", Customer.class);
         return query.getResultList();
@@ -55,6 +58,7 @@ public class DBCustomer implements CustomerRepository {
   @Override
   public Customer getCustomerById(int id) throws CustomerException {
     try {
+      em = emf.createEntityManager();
       return em.find(Customer.class, id);
     } finally {
       em.close();
@@ -64,6 +68,7 @@ public class DBCustomer implements CustomerRepository {
   @Override
   public List<Customer> getCustomersByName(String name) throws CustomerException {
     try {
+      em = emf.createEntityManager();
       TypedQuery<Customer> query =
           em.createQuery(
                   "SELECT BANKCUSTOMER FROM Customer bankCustomer WHERE BANKCUSTOMER.firstName = :name",

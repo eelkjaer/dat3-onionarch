@@ -13,10 +13,11 @@ import javax.persistence.TypedQuery;
 public class DBCustomerDTO implements CustomerDTORepository {
 
   private static final boolean authorized = true;
+  private final EntityManagerFactory emf;
   private EntityManager em;
 
   public DBCustomerDTO(EntityManagerFactory emf) {
-    this.em = emf.createEntityManager();
+    this.emf = emf;
   }
 
   @Override
@@ -28,6 +29,7 @@ public class DBCustomerDTO implements CustomerDTORepository {
   public CustomerDTO createCustomer(CustomerDTO customerdto) throws CustomerDTOException {
     if (authorized) {
       try {
+        em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(customerdto);
         em.getTransaction().commit();
@@ -42,6 +44,7 @@ public class DBCustomerDTO implements CustomerDTORepository {
   public List<CustomerDTO> getAllCustomerDTOs() throws CustomerDTOException {
     if (authorized) {
       try {
+        em = emf.createEntityManager();
         TypedQuery<CustomerDTO> query =
             em.createQuery("SELECT BANKCUSTOMER FROM Customer bankCustomer", CustomerDTO.class);
         return query.getResultList();
@@ -55,6 +58,7 @@ public class DBCustomerDTO implements CustomerDTORepository {
   @Override
   public CustomerDTO getCustomerById(int id) throws CustomerDTOException {
     try {
+      em = emf.createEntityManager();
       return em.find(CustomerDTO.class, id);
     } finally {
       em.close();
@@ -64,6 +68,7 @@ public class DBCustomerDTO implements CustomerDTORepository {
   @Override
   public List<CustomerDTO> getCustomersByName(String name) throws CustomerDTOException {
     try {
+      em = emf.createEntityManager();
       TypedQuery<CustomerDTO> query =
           em.createQuery(
                   "SELECT BANKCUSTOMER FROM Customer bankCustomer WHERE BANKCUSTOMER.firstName = :name",
