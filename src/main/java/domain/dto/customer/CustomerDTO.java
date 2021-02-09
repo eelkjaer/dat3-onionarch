@@ -11,6 +11,9 @@ public class CustomerDTO {
   private int accountNumber;
   private double balance;
 
+  public CustomerDTO() {
+  }
+
   public CustomerDTO(Customer customer) {
     this.customerId = customer.getId();
     this.fullName = String.format("%s %s", customer.getFirstName(), customer.getLastName());

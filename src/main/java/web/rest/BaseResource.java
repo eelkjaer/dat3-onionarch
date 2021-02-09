@@ -1,24 +1,32 @@
 package web.rest;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import api.Api;
 import api.utils.EmfCreator;
 import javax.persistence.EntityManagerFactory;
+import org.slf4j.Logger;
 
 public class BaseResource {
+  private static final Logger log = getLogger(BaseResource.class);
 
-  protected static final Api API;
+  public BaseResource() {
+  }
 
+  protected static  Api API;
 
   static {
-    API = createBaseApi(EmfCreator.createEntityManagerFactory());
+    try{
+      API = createBaseApi(EmfCreator.createEntityManagerFactory());
+    } catch (Exception e){
+      log.error(e.getMessage());
+    }
   }
 
   private static Api createBaseApi(EntityManagerFactory emf) {
     return new Api(emf);
   }
 
-  protected void init(){
-    //TODO: Do stuff
-  }
+
 
 }

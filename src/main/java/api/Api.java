@@ -2,10 +2,8 @@ package api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import domain.dto.customer.CustomerDTO;
-import domain.entity.customer.CustomerException;
+import domain.dto.customer.CustomerDTOException;
 import infrastructure.CustomerFacade;
-import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
 public class Api {
@@ -19,11 +17,17 @@ public class Api {
     this.customerFacade = new CustomerFacade(emf);
   }
 
-  public List<CustomerDTO> getAllCustomers() {
-    return customerFacade.getAllCustomers();
+  public String getAllCustomers() {
+    return gson.toJson(customerFacade.getAllCustomers());
   }
 
-  public CustomerDTO getCustomerById(int id) throws CustomerException {
-    return customerFacade.getCustomerById(id);
+  public String getCustomerById(int id) throws CustomerDTOException {
+    return gson.toJson(customerFacade.getCustomerById(id));
+  }
+
+  public boolean createCustomer(){
+    //TODO: Implement code
+    boolean created = false;
+    return created;
   }
 }

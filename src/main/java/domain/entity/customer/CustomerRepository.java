@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface CustomerRepository extends CustomerFactory {
 
-  List<CustomerDTO> getAllCustomers() throws CustomerException;
+  List<Customer> getAllCustomers() throws CustomerException;
 
-  CustomerDTO getCustomerById(int id) throws CustomerException;
+  Customer getCustomerById(int id) throws CustomerException;
 
-  List<CustomerDTO> getCustomersByName(String name) throws CustomerException;
+  List<Customer> getCustomersByName(String name) throws CustomerException;
 
-  void updateCustomer(CustomerDTO customer) throws CustomerException;
+  void updateCustomer(Customer customer) throws CustomerException;
 
-  void deleteCustomer(CustomerDTO customer) throws CustomerException;
+  void deleteCustomer(Customer customer) throws CustomerException;
 }

@@ -122,6 +122,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>4.6.0.Final</version>
+        </dependency>
+
         <!-- For Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>

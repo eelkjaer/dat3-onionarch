@@ -2,27 +2,30 @@ package web.rest;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-import domain.entity.customer.CustomerException;
+import domain.dto.customer.CustomerDTOException;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import org.slf4j.Logger;
 
 @Path("customer")
-public class CustomerResource extends BaseResource{
+public class CustomerResource extends BaseResource {
 
-  private static final Logger log = getLogger(CustomerResource.class);
+  private CustomerResource() {
+  }
 
   @Context private UriInfo context;
 
   @GET
   @Produces({MediaType.APPLICATION_JSON})
   public String demo() {
-    return API.gson.toJson("Hello World!");
+    return "{\"msg\": \"Hello World\"}";
   }
 
   @Path("count")
@@ -30,30 +33,41 @@ public class CustomerResource extends BaseResource{
   @Produces({MediaType.APPLICATION_JSON})
   public String getCustomerCount() {
 
-    long count = API.getAllCustomers().size();
-    return API.gson.toJson(count);
+    //long count = API.getAllCustomers().size();
+    int count = 1337;
+    return "{\"count\": " + count + " }";
   }
 
 
   @Path("{id}")
   @GET
   @Produces({MediaType.APPLICATION_JSON})
-  public String getCustomerById(@PathParam("id") int id) throws CustomerException {
-    return API.gson.toJson(API.getCustomerById(id));
+  public String getCustomerById(@PathParam("id") int id)
+      throws CustomerDTOException {
+    return API.getCustomerById(id);
   }
 
   @Path("all")
   @GET
   @Produces({MediaType.APPLICATION_JSON})
   public String getAllCustomers() {
-    return API.gson.toJson(API.getAllCustomers());
+    return API.getAllCustomers();
   }
 
-//  @Path("init")
-//  @GET
-//  @Produces({MediaType.APPLICATION_JSON})
-//  public String initData(){
-//    return API.gson.toJson(MakeTestData.createTestData());
-//  }
+  @Path("create")
+  @RolesAllowed("ADMIN")
+  @POST
+  @Produces({MediaType.APPLICATION_JSON})
+  public Response createNewCustomer(String post){
+    int statuscode = 0;
+    if (API.createCustomer()) statuscode=200; else statuscode = 500;
+
+
+    //String output = API.gson.toJson(post);
+    String output = "{\"msg\": \"" + post + "\"}";
+
+
+    return Response.status(statuscode).entity(output).build();
+  }
 
 }

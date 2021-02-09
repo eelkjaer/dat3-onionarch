@@ -15,14 +15,15 @@ import javax.persistence.Id;
 public class Customer {
 
   private static final int serialVersionUID = 1;
-  private final String firstName;
-  private final String lastName;
-  private final int accountNumber;
+  private String firstName;
+  private String lastName;
+  private int accountNumber;
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   private double balance;
   private Enum<Ranking> customerRanking;
+
   public Customer(
       int id,
       String firstName,
@@ -38,8 +39,10 @@ public class Customer {
     this.customerRanking = customerRanking;
   }
 
-  public Customer(
-      String firstName,
+  public Customer() {
+  }
+
+  public Customer(String firstName,
       String lastName,
       int accountNumber,
       double balance,
