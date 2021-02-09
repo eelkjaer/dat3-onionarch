@@ -43,7 +43,8 @@ public class EmfCreator {
       System.out.println("CONNECTION_STR -->" + System.getenv("CONNECTION_STR"));
       String user = System.getenv("USER");
       String pw = System.getenv("PW");
-      String connection_str = System.getenv("CONNECTION_STR");
+      String dbName = "";
+      String connection_str = System.getenv("CONNECTION_STR") + dbName;
 
       Properties props = new Properties();
       props.setProperty("javax.persistence.jdbc.user", user);
