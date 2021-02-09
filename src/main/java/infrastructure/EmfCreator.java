@@ -43,7 +43,7 @@ public class EmfCreator {
       System.out.println("CONNECTION_STR -->" + System.getenv("CONNECTION_STR"));
       String user = System.getenv("USER");
       String pw = System.getenv("PW");
-      String dbName = "scambank";
+      String dbName = "scambank"; //Not to get stuck on a single schema
       String connection_str = System.getenv("CONNECTION_STR") + dbName;
 
       Properties props = new Properties();
