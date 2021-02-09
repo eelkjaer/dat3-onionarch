@@ -3,6 +3,8 @@ package web.rest;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import api.ApplicationConfig;
+import infrastructure.DBCustomer;
+import infrastructure.DBCustomerDTO;
 import infrastructure.EmfCreator;
 import javax.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
@@ -11,17 +13,24 @@ public class BaseResource {
   private static final Logger log = getLogger(BaseResource.class);
   protected static ApplicationConfig API;
 
+  protected BaseResource() {}
+
   static {
     try {
-      API = createBaseApi(EmfCreator.createEntityManagerFactory());
+    API = createApi();
     } catch (Exception e) {
       log.error(e.getMessage());
     }
   }
 
-  protected BaseResource() {}
+  private static ApplicationConfig createApi() {
 
-  private static ApplicationConfig createBaseApi(EntityManagerFactory emf) {
-    return new ApplicationConfig(emf);
+    EntityManagerFactory emf = EmfCreator.createEntityManagerFactory();
+
+    return new ApplicationConfig(
+        new DBCustomer(emf),
+        new DBCustomerDTO(emf)
+    );
   }
+
 }
