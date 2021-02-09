@@ -30,22 +30,17 @@ public class Customer {
   @Column(name = "balance", length = 75, nullable = false, unique = false)
   private double balance;
 
-  @Column(name = "ranking", length = 10, nullable = false, unique = false)
-  private Enum<Ranking> customerRanking;
-
   public Customer(
       int id,
       String firstName,
       String lastName,
       int accountNumber,
-      double balance,
-      Enum<Ranking> customerRanking) {
+      double balance) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.accountNumber = accountNumber;
     this.balance = balance;
-    this.customerRanking = customerRanking;
   }
 
   public Customer() {}
@@ -54,23 +49,20 @@ public class Customer {
       String firstName,
       String lastName,
       int accountNumber,
-      double balance,
-      Enum<Ranking> customerRanking) {
+      double balance) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.accountNumber = accountNumber;
     this.balance = balance;
-    this.customerRanking = customerRanking;
   }
 
-  public Customer(CustomerDTO dto, Enum<Ranking> ranking) {
+  public Customer(CustomerDTO dto) {
     String names[] = dto.getFullName().split(" ");
     this.firstName = names[0];
     this.lastName = names[1];
     this.accountNumber = dto.getAccountNumber();
     this.id = dto.getCustomerId();
     this.balance = dto.getBalance();
-    this.customerRanking = ranking;
   }
 
   public int getId() {
@@ -101,14 +93,6 @@ public class Customer {
     this.balance = balance;
   }
 
-  public Enum<Ranking> getCustomerRanking() {
-    return customerRanking;
-  }
-
-  public void setCustomerRanking(Enum<Ranking> customerRanking) {
-    this.customerRanking = customerRanking;
-  }
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -117,14 +101,7 @@ public class Customer {
     sb.append(", lastName=").append(lastName);
     sb.append(", accountNumber=").append(accountNumber);
     sb.append(", balance=").append(balance);
-    sb.append(", customerRanking=").append(customerRanking);
     sb.append('}');
     return sb.toString();
-  }
-
-  public enum Ranking {
-    Low,
-    Medium,
-    High
   }
 }

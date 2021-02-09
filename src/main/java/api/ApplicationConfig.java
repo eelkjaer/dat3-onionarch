@@ -1,36 +1,10 @@
 package api;
-import static api.Utils.GSON;
 
-import domain.dto.customer.CustomerDTOException;
-import domain.dto.customer.CustomerDTORepository;
-import domain.entity.customer.CustomerException;
-import domain.entity.customer.CustomerRepository;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
 @javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
-  private final CustomerRepository customerRepository;
-  private final CustomerDTORepository customerDTORepository;
-
-  public ApplicationConfig(CustomerRepository customerRepository, CustomerDTORepository customerDTORepository) {
-    this.customerRepository = customerRepository;
-    this.customerDTORepository = customerDTORepository;
-  }
-
-  public String getAllCustomers() throws CustomerException {
-    return GSON.toJson(customerRepository.getAllCustomers());
-  }
-
-  public String getCustomerById(int id) throws CustomerDTOException, CustomerException {
-    return GSON.toJson(customerRepository.getCustomerById(id));
-  }
-
-  public boolean createCustomer() {
-    // TODO: Implement code
-    return false;
-  }
-
   @Override
   public Set<Class<?>> getClasses() {
     Set<Class<?>> resources = new java.util.HashSet<>();

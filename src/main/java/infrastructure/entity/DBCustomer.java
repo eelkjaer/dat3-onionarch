@@ -1,4 +1,4 @@
-package infrastructure;
+package infrastructure.entity;
 
 import domain.dto.customer.CustomerDTO;
 import domain.entity.customer.Customer;
@@ -13,7 +13,7 @@ import javax.persistence.TypedQuery;
 public class DBCustomer implements CustomerRepository {
 
   private static final boolean authorized = true;
-  private final EntityManager em;
+  private EntityManager em;
 
   public DBCustomer(EntityManagerFactory emf) {
     this.em = emf.createEntityManager();
@@ -21,7 +21,7 @@ public class DBCustomer implements CustomerRepository {
 
   @Override
   public Customer createCustomerFromDTO(CustomerDTO customerDTO) throws CustomerException {
-    return new Customer(customerDTO, null);
+    return new Customer(customerDTO);
   }
 
   @Override

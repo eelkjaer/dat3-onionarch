@@ -1,4 +1,4 @@
-package infrastructure;
+package infrastructure.dto;
 
 import domain.dto.customer.CustomerDTO;
 import domain.dto.customer.CustomerDTOException;
@@ -13,7 +13,7 @@ import javax.persistence.TypedQuery;
 public class DBCustomerDTO implements CustomerDTORepository {
 
   private static final boolean authorized = true;
-  private final EntityManager em;
+  private EntityManager em;
 
   public DBCustomerDTO(EntityManagerFactory emf) {
     this.em = emf.createEntityManager();
