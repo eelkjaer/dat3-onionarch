@@ -72,12 +72,14 @@ public class ORMCustomer implements CustomerRepository {
   public void updateCustomer(CustomerDTO customer) throws CustomerException {
       try {
         em = emf.createEntityManager();
+        em.getTransaction().begin();
         TypedQuery<Customer> query =
             em.createQuery("UPDATE Customer SET firstName= :firstname , lastName = :lastname, balance = :balance", Customer.class);
         query.setParameter("firstname", customer.getFullName().split(" ")[0]);
         query.setParameter("lastname", customer.getFullName().split(" ")[1]);
         query.setParameter("balance", customer.getBalance());
         query.executeUpdate();
+        em.getTransaction().commit();
       } finally {
         em.close();
       }

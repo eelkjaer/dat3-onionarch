@@ -4,8 +4,6 @@ Content-Type: application/json
 Content-Length: 105
 
 {
-  "firstName": "anders",
-  "lastName": "nielsen",
-  "accountNumber": 5678,
+  "fullName": "John Testersen",
   "balance": 100.0
 }
