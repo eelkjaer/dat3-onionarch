@@ -21,7 +21,7 @@ public class Customer {
   private String lastName;
 
   @Column(name = "accountnumber", length = 75, nullable = false, unique = true)
-  private int accountNumber;
+  private String accountNumber;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class Customer {
   @Column(name = "balance", length = 75, nullable = false, unique = false)
   private double balance;
 
-  public Customer(int id, String firstName, String lastName, int accountNumber, double balance) {
+  public Customer(int id, String firstName, String lastName, String accountNumber, double balance) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -40,7 +40,7 @@ public class Customer {
 
   public Customer() {}
 
-  public Customer(String firstName, String lastName, int accountNumber, double balance) {
+  public Customer(String firstName, String lastName, String accountNumber, double balance) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.accountNumber = accountNumber;
@@ -51,7 +51,7 @@ public class Customer {
     String[] names = dto.getFullName().split(" ");
     this.firstName = names[0];
     this.lastName = names[1];
-    this.accountNumber = dto.getAccountNumber();
+    this.accountNumber = String.valueOf(dto.getAccountNumber());
     this.id = dto.getCustomerId();
     this.balance = dto.getBalance();
   }
@@ -72,7 +72,7 @@ public class Customer {
     return lastName;
   }
 
-  public int getAccountNumber() {
+  public String getAccountNumber() {
     return accountNumber;
   }
 

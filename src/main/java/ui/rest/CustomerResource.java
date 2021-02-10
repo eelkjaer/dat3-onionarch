@@ -2,6 +2,7 @@ package ui.rest;
 
 import static onionarch.Utils.GSON;
 
+import java.util.Random;
 import onionarch.dto.CustomerDTO;
 import domain.customer.exceptions.CustomerException;
 import javax.ws.rs.GET;
@@ -16,6 +17,8 @@ import javax.ws.rs.core.UriInfo;
 
 @Path("customer")
 public class CustomerResource extends BaseResource {
+  private Random generator = new Random();
+
   @Context private UriInfo context;
 
   public CustomerResource() {
@@ -65,6 +68,12 @@ public class CustomerResource extends BaseResource {
   @Produces({MediaType.APPLICATION_JSON})
   public Response createNewCustomer(String customer) throws CustomerException {
     CustomerDTO dto = GSON.fromJson(customer, CustomerDTO.class);
+
+    int regNo = generator.nextInt(1000) + 999;
+    int accNo = generator.nextInt(1000000) + 999999;
+
+    String accNum = String.format("%d-%d", regNo, accNo);
+    dto.setAccountNumber(accNum);
     API.createCustomer(dto);
 
     return Response.status(200).entity(dto).build();

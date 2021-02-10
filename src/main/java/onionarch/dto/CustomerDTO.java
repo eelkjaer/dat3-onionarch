@@ -8,7 +8,7 @@ public class CustomerDTO {
 
   private int customerId;
   private String fullName;
-  private int accountNumber;
+  private String accountNumber;
   private double balance;
 
   public CustomerDTO() {}
@@ -49,11 +49,11 @@ public class CustomerDTO {
     this.fullName = fullName;
   }
 
-  public int getAccountNumber() {
+  public String getAccountNumber() {
     return accountNumber;
   }
 
-  public void setAccountNumber(int accountNumber) {
+  public void setAccountNumber(String accountNumber) {
     this.accountNumber = accountNumber;
   }
 

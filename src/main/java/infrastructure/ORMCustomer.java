@@ -21,11 +21,12 @@ public class ORMCustomer implements CustomerRepository {
   @Override
   public Customer createCustomer(CustomerDTO customer) throws CustomerException {
       try {
+        Customer cust = new Customer(customer);
         em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(customer);
+        em.persist(cust);
         em.getTransaction().commit();
-        return new Customer(customer);
+        return cust;
       } finally {
         em.close();
       }
