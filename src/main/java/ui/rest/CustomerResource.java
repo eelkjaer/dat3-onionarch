@@ -1,8 +1,8 @@
 package ui.rest;
 
-import static api.Utils.GSON;
+import static onionarch.Utils.GSON;
 
-import api.dto.CustomerDTO;
+import onionarch.dto.CustomerDTO;
 import domain.customer.exceptions.CustomerException;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

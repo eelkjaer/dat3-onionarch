@@ -1,4 +1,4 @@
-package api.dto;
+package onionarch.dto;
 
 import domain.customer.entity.Customer;
 import java.util.ArrayList;

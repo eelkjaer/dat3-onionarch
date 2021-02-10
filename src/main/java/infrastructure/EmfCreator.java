@@ -1,5 +1,7 @@
 package infrastructure;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -43,7 +45,7 @@ public class EmfCreator {
       System.out.println("CONNECTION_STR -->" + System.getenv("CONNECTION_STR"));
       String user = System.getenv("USER");
       String pw = System.getenv("PW");
-      String dbName = "scambank"; // Not to get stuck on a single schema
+      String dbName = getProperty("properties-from-pom.properties", "db.name");
       String connection_str = System.getenv("CONNECTION_STR") + dbName;
 
       Properties props = new Properties();
@@ -79,5 +81,20 @@ public class EmfCreator {
       throw ex;
     }
     return emf;
+  }
+
+
+
+  private static String getProperty(String propertyFileName, String propertyName) {
+    Properties pomProperties;
+    InputStream is = EmfCreator.class.getClassLoader()
+        .getResourceAsStream(propertyFileName);
+    pomProperties = new Properties();
+    try {
+      pomProperties.load(is);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return pomProperties.getProperty(propertyName);
   }
 }

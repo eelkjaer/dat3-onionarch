@@ -1,6 +1,6 @@
-package api;
+package onionarch;
 
-import api.dto.CustomerDTO;
+import onionarch.dto.CustomerDTO;
 import domain.customer.entity.CustomerRepository;
 import domain.customer.exceptions.CustomerException;
 import java.util.List;

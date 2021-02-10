@@ -2,7 +2,7 @@ package ui.rest;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-import api.Onionarch;
+import onionarch.Onionarch;
 import infrastructure.EmfCreator;
 import infrastructure.ORMCustomer;
 import javax.persistence.EntityManagerFactory;

@@ -3,7 +3,7 @@
   <security-constraint>
     <web-resource-collection>
       <http-method>POST</http-method>
-      <url-pattern>/onionarch.api/domain.customer/create</url-pattern>
+      <url-pattern>/onionarch.onionarch/domain.customer/create</url-pattern>
       <web-resource-name>Customer creation</web-resource-name>
     </web-resource-collection>
     <!--    <auth-constraint>-->

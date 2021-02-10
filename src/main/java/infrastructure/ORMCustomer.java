@@ -1,6 +1,6 @@
 package infrastructure;
 
-import api.dto.CustomerDTO;
+import onionarch.dto.CustomerDTO;
 import domain.customer.entity.Customer;
 import domain.customer.entity.CustomerRepository;
 import domain.customer.exceptions.CustomerException;

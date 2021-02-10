@@ -1,6 +1,6 @@
 package domain.customer.entity;
 
-import api.dto.CustomerDTO;
+import onionarch.dto.CustomerDTO;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

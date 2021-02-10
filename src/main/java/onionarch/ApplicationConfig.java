@@ -1,11 +1,11 @@
-package api;
+package onionarch;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
 import ui.rest.BaseResource;
 import ui.rest.CustomerResource;
 
-@javax.ws.rs.ApplicationPath("api")
+@javax.ws.rs.ApplicationPath("onionarch")
 public class ApplicationConfig extends Application {
   @Override
   public Set<Class<?>> getClasses() {
