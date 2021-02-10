@@ -15,4 +15,6 @@ public interface CustomerRepository extends CustomerFactory {
   void updateCustomer(CustomerDTO customer) throws CustomerException;
 
   void deleteCustomer(Customer customer) throws CustomerException;
+
+  Customer getCustomerByAccountNumber(String accNum) throws CustomerException;
 }

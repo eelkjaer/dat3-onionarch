@@ -37,4 +37,8 @@ public class Onionarch {
     dto.setCustomerId(id);
     customerRepository.updateCustomer(dto);
   }
+
+  public Object getCustomerByNumber(String accNum) throws CustomerException {
+    return new CustomerDTO(customerRepository.getCustomerByAccountNumber(accNum));
+  }
 }

@@ -76,6 +76,6 @@ public class CustomerResource extends BaseResource {
     dto.setAccountNumber(accNum);
     API.createCustomer(dto);
 
-    return Response.status(200).entity(dto).build();
+    return Response.status(200).entity(API.getCustomerByNumber(accNum)).build();
   }
 }

@@ -4,5 +4,5 @@ import onionarch.dto.CustomerDTO;
 import domain.customer.exceptions.CustomerException;
 
 public interface CustomerFactory {
-  Customer createCustomer(CustomerDTO customer) throws CustomerException;
+  CustomerDTO createCustomer(CustomerDTO customer) throws CustomerException;
 }

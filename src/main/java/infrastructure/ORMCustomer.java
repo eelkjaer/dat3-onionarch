@@ -19,17 +19,16 @@ public class ORMCustomer implements CustomerRepository {
   }
 
   @Override
-  public Customer createCustomer(CustomerDTO customer) throws CustomerException {
+  public CustomerDTO createCustomer(CustomerDTO customer) throws CustomerException {
       try {
-        Customer cust = new Customer(customer);
         em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(cust);
+        em.persist(new Customer(customer));
         em.getTransaction().commit();
-        return cust;
       } finally {
         em.close();
       }
+      return customer;
   }
 
   @Override
@@ -91,6 +90,21 @@ public class ORMCustomer implements CustomerRepository {
       em.getTransaction().begin();
       em.remove(customer);
       em.getTransaction().commit();
+    } finally {
+      em.close();
+    }
+  }
+
+  @Override
+  public Customer getCustomerByAccountNumber(String accNum) throws CustomerException {
+    try {
+      em = emf.createEntityManager();
+      TypedQuery<Customer> query =
+          em.createQuery(
+              "SELECT BANKCUSTOMER FROM Customer bankCustomer WHERE BANKCUSTOMER.accountNumber = :accNum",
+              Customer.class)
+              .setParameter("accNum", accNum);
+      return query.getSingleResult();
     } finally {
       em.close();
     }
