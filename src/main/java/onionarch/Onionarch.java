@@ -27,15 +27,15 @@ public class Onionarch {
     customerRepository.createCustomer(dto);
   }
 
-  public void deleteCustomerById(int id) throws CustomerException {
-    customerRepository.deleteCustomer(
+  public boolean deleteCustomerById(int id) throws CustomerException {
+    return customerRepository.deleteCustomer(
         customerRepository.getCustomerById(id)
     );
   }
 
-  public void updateCustomerById(int id, CustomerDTO dto) throws CustomerException {
+  public CustomerDTO updateCustomerById(int id, CustomerDTO dto) throws CustomerException {
     dto.setCustomerId(id);
-    customerRepository.updateCustomer(dto);
+    return customerRepository.updateCustomer(dto);
   }
 
   public Object getCustomerByNumber(String accNum) throws CustomerException {

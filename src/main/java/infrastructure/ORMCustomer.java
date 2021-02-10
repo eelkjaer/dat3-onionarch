@@ -69,7 +69,7 @@ public class ORMCustomer implements CustomerRepository {
   }
 
   @Override
-  public void updateCustomer(CustomerDTO customer) throws CustomerException {
+  public CustomerDTO updateCustomer(CustomerDTO customer) throws CustomerException {
       try {
         em = emf.createEntityManager();
 
@@ -79,18 +79,21 @@ public class ORMCustomer implements CustomerRepository {
         cust.setBalance(customer.getBalance());
         em.getTransaction().commit();
 
+        return new CustomerDTO(cust);
+
       } finally {
         em.close();
       }
   }
 
   @Override
-  public void deleteCustomer(Customer customer) throws CustomerException {
+  public boolean deleteCustomer(Customer customer) throws CustomerException {
     try {
       em = emf.createEntityManager();
       em.getTransaction().begin();
       em.remove(customer);
       em.getTransaction().commit();
+      return true;
     } finally {
       em.close();
     }

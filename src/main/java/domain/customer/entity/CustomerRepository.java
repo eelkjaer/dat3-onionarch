@@ -12,9 +12,9 @@ public interface CustomerRepository extends CustomerFactory {
 
   List<Customer> getCustomersByName(String name) throws CustomerException;
 
-  void updateCustomer(CustomerDTO customer) throws CustomerException;
+  CustomerDTO updateCustomer(CustomerDTO customer) throws CustomerException;
 
-  void deleteCustomer(Customer customer) throws CustomerException;
+  boolean deleteCustomer(Customer customer) throws CustomerException;
 
   Customer getCustomerByAccountNumber(String accNum) throws CustomerException;
 }

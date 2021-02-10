@@ -17,7 +17,7 @@ import javax.ws.rs.core.UriInfo;
 
 @Path("customer")
 public class CustomerResource extends BaseResource {
-  private Random generator = new Random();
+  private final Random generator = new Random();
 
   @Context private UriInfo context;
 
@@ -34,32 +34,44 @@ public class CustomerResource extends BaseResource {
   @Path("{id}")
   @GET
   @Produces({MediaType.APPLICATION_JSON})
-  public String getCustomerById(@PathParam("id") int id) throws CustomerException {
-    return GSON.toJson(API.getCustomerById(id));
+  public Response getCustomerById(@PathParam("id") int id) throws CustomerException {
+    return Response.status(200)
+        .entity(
+            GSON.toJson(API.getCustomerById(id)))
+        .build();
   }
 
   @Path("all")
   @GET
   @Produces({MediaType.APPLICATION_JSON})
-  public String getAllCustomers() throws CustomerException {
-    return GSON.toJson(API.getAllCustomers());
+  public Response getAllCustomers() throws CustomerException {
+    return Response.status(200)
+        .entity(
+            GSON.toJson(API.getAllCustomers()))
+        .build();
   }
 
   @Path("{id}/delete")
   // @RolesAllowed("ADMIN")
   @POST
   @Produces({MediaType.APPLICATION_JSON})
-  public void deleteCustomer(@PathParam("id") int id) throws CustomerException {
-    API.deleteCustomerById(id);
+  public Response deleteCustomer(@PathParam("id") int id) throws CustomerException {
+    return Response.status(200)
+        .entity(
+            API.deleteCustomerById(id))
+        .build();
   }
 
   @Path("{id}/update")
   // @RolesAllowed("ADMIN")
   @POST
   @Produces({MediaType.APPLICATION_JSON})
-  public void updateCustomer(@PathParam("id") int id, String customer) throws CustomerException {
+  public Response updateCustomer(@PathParam("id") int id, String customer) throws CustomerException {
     CustomerDTO dto = GSON.fromJson(customer, CustomerDTO.class);
-    API.updateCustomerById(id, dto);
+    return Response.status(200)
+        .entity(
+            API.updateCustomerById(id, dto))
+        .build();
   }
 
   @Path("create")
@@ -76,6 +88,9 @@ public class CustomerResource extends BaseResource {
     dto.setAccountNumber(accNum);
     API.createCustomer(dto);
 
-    return Response.status(200).entity(API.getCustomerByNumber(accNum)).build();
+    return Response.status(200)
+        .entity(
+            API.getCustomerByNumber(accNum))
+        .build();
   }
 }
