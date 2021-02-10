@@ -2,6 +2,8 @@ package api;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
+import ui.rest.BaseResource;
+import ui.rest.CustomerResource;
 
 @javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
@@ -18,7 +20,7 @@ public class ApplicationConfig extends Application {
    */
   private void addRestResourceClasses(Set<Class<?>> resources) {
     resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
-    resources.add(web.rest.BaseResource.class);
-    resources.add(web.rest.CustomerResource.class);
+    resources.add(BaseResource.class);
+    resources.add(CustomerResource.class);
   }
 }

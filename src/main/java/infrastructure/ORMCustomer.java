@@ -1,48 +1,38 @@
-package infrastructure.entity;
+package infrastructure;
 
-import domain.dto.customer.CustomerDTO;
-import domain.entity.customer.Customer;
-import domain.entity.customer.CustomerException;
-import domain.entity.customer.CustomerRepository;
-import java.util.ArrayList;
+import api.dto.CustomerDTO;
+import domain.customer.entity.Customer;
+import domain.customer.entity.CustomerRepository;
+import domain.customer.exceptions.CustomerException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 
-public class DBCustomer implements CustomerRepository {
+public class ORMCustomer implements CustomerRepository {
 
-  private static final boolean authorized = true;
   private final EntityManagerFactory emf;
   private EntityManager em;
 
-  public DBCustomer(EntityManagerFactory emf) {
+  public ORMCustomer(EntityManagerFactory emf) {
     this.emf = emf;
   }
 
   @Override
-  public Customer createCustomerFromDTO(CustomerDTO customerDTO) throws CustomerException {
-    return new Customer(customerDTO);
-  }
-
-  @Override
-  public Customer createCustomer(Customer customer) throws CustomerException {
-    if (authorized) {
+  public Customer createCustomer(CustomerDTO customer) throws CustomerException {
       try {
         em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(customer);
         em.getTransaction().commit();
+        return new Customer(customer);
       } finally {
         em.close();
       }
-    }
-    return null;
   }
 
   @Override
   public List<Customer> getAllCustomers() throws CustomerException {
-    if (authorized) {
       try {
         em = emf.createEntityManager();
         TypedQuery<Customer> query =
@@ -51,8 +41,6 @@ public class DBCustomer implements CustomerRepository {
       } finally {
         em.close();
       }
-    }
-    return new ArrayList<>();
   }
 
   @Override
@@ -81,12 +69,29 @@ public class DBCustomer implements CustomerRepository {
   }
 
   @Override
-  public void updateCustomer(Customer customer) throws CustomerException {
-    // TODO: Implement code
+  public void updateCustomer(CustomerDTO customer) throws CustomerException {
+      try {
+        em = emf.createEntityManager();
+        TypedQuery<Customer> query =
+            em.createQuery("UPDATE Customer SET firstName= :firstname , lastName = :lastname, balance = :balance", Customer.class);
+        query.setParameter("firstname", customer.getFullName().split(" ")[0]);
+        query.setParameter("lastname", customer.getFullName().split(" ")[1]);
+        query.setParameter("balance", customer.getBalance());
+        query.executeUpdate();
+      } finally {
+        em.close();
+      }
   }
 
   @Override
   public void deleteCustomer(Customer customer) throws CustomerException {
-    // TODO: Implement code
+    try {
+      em = emf.createEntityManager();
+      em.getTransaction().begin();
+      em.remove(customer);
+      em.getTransaction().commit();
+    } finally {
+      em.close();
+    }
   }
 }

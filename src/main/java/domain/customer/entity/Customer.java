@@ -1,6 +1,6 @@
-package domain.entity.customer;
+package domain.customer.entity;
 
-import domain.dto.customer.CustomerDTO;
+import api.dto.CustomerDTO;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "domain.customer")
 public class Customer {
 
   private static final int serialVersionUID = 1;
@@ -30,12 +30,7 @@ public class Customer {
   @Column(name = "balance", length = 75, nullable = false, unique = false)
   private double balance;
 
-  public Customer(
-      int id,
-      String firstName,
-      String lastName,
-      int accountNumber,
-      double balance) {
+  public Customer(int id, String firstName, String lastName, int accountNumber, double balance) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -45,11 +40,7 @@ public class Customer {
 
   public Customer() {}
 
-  public Customer(
-      String firstName,
-      String lastName,
-      int accountNumber,
-      double balance) {
+  public Customer(String firstName, String lastName, int accountNumber, double balance) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.accountNumber = accountNumber;
@@ -57,7 +48,7 @@ public class Customer {
   }
 
   public Customer(CustomerDTO dto) {
-    String names[] = dto.getFullName().split(" ");
+    String[] names = dto.getFullName().split(" ");
     this.firstName = names[0];
     this.lastName = names[1];
     this.accountNumber = dto.getAccountNumber();

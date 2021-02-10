@@ -1,6 +1,6 @@
-package domain.dto.customer;
+package api.dto;
 
-import domain.entity.customer.Customer;
+import domain.customer.entity.Customer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +18,11 @@ public class CustomerDTO {
     this.fullName = String.format("%s %s", customer.getFirstName(), customer.getLastName());
     this.accountNumber = customer.getAccountNumber();
     this.balance = customer.getBalance();
+  }
+
+  public CustomerDTO(String firstname, String lastname, double balance) {
+    this.fullName = String.format("%s %s", firstname, lastname);
+    this.balance = balance;
   }
 
   public static List<CustomerDTO> getAllBankCustomersDTO(List<Customer> customers) {
@@ -66,7 +71,6 @@ public class CustomerDTO {
     sb.append("CustomerDTO{customerId=").append(customerId);
     sb.append(", fullName=").append(fullName);
     sb.append(", accountNumber=").append(accountNumber);
-    sb.append(", balance=").append(balance);
     sb.append('}');
     return sb.toString();
   }
