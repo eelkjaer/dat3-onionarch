@@ -13,6 +13,7 @@
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/target/generated-sources/annotations" />
         </sourceRoots>
       </configuration>
     </facet>
@@ -36,6 +37,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/annotations" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -133,5 +135,22 @@
     <orderEntry type="library" name="Maven: org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_2.1_spec:2.0.1.Final" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-jdk14:1.7.30" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.mojo:properties-maven-plugin:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-model:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-api:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-project:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-settings:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-profile:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact-manager:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-repository-metadata:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven.wagon:wagon-provider-api:1.0-beta-6" level="project" />
+    <orderEntry type="library" name="Maven: backport-util-concurrent:backport-util-concurrent:3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-registry:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-interpolation:1.11" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:3.8.1" level="project" />
+    <orderEntry type="library" name="Maven: classworlds:classworlds:1.1-alpha-2" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-utils:3.0.22" level="project" />
   </component>
 </module>
