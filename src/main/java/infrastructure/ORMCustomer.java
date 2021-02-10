@@ -87,11 +87,14 @@ public class ORMCustomer implements CustomerRepository {
   }
 
   @Override
-  public boolean deleteCustomer(Customer customer) throws CustomerException {
+  public boolean deleteCustomer(CustomerDTO customer) throws CustomerException {
     try {
       em = emf.createEntityManager();
+
+      Customer cust = em.find(Customer.class, customer.getCustomerId());
+
       em.getTransaction().begin();
-      em.remove(customer);
+      em.remove(cust);
       em.getTransaction().commit();
       return true;
     } finally {

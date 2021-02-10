@@ -29,7 +29,7 @@ public class Onionarch {
 
   public boolean deleteCustomerById(int id) throws CustomerException {
     return customerRepository.deleteCustomer(
-        customerRepository.getCustomerById(id)
+        new CustomerDTO(customerRepository.getCustomerById(id))
     );
   }
 
