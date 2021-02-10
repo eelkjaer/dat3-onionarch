@@ -5,7 +5,7 @@ import javax.ws.rs.core.Application;
 import ui.rest.BaseResource;
 import ui.rest.CustomerResource;
 
-@javax.ws.rs.ApplicationPath("onionarch")
+@javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
   @Override
   public Set<Class<?>> getClasses() {
