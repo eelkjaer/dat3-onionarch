@@ -45,7 +45,7 @@ public class EmfCreator {
       System.out.println("CONNECTION_STR -->" + System.getenv("CONNECTION_STR"));
       String user = System.getenv("USER");
       String pw = System.getenv("PW");
-      String dbName = getProperty("properties-from-pom.properties", "db.name");
+      String dbName = getDbName();
       String connection_str = System.getenv("CONNECTION_STR") + dbName;
 
       Properties props = new Properties();
@@ -85,16 +85,16 @@ public class EmfCreator {
 
 
 
-  private static String getProperty(String propertyFileName, String propertyName) {
+  private static String getDbName() {
     Properties pomProperties;
     InputStream is = EmfCreator.class.getClassLoader()
-        .getResourceAsStream(propertyFileName);
+        .getResourceAsStream("properties-from-pom.properties");
     pomProperties = new Properties();
     try {
       pomProperties.load(is);
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return pomProperties.getProperty(propertyName);
+    return pomProperties.getProperty("db.name");
   }
 }
