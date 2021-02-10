@@ -83,12 +83,10 @@ public class EmfCreator {
     return emf;
   }
 
-
-
   private static String getDbName() {
     Properties pomProperties;
-    InputStream is = EmfCreator.class.getClassLoader()
-        .getResourceAsStream("properties-from-pom.properties");
+    InputStream is =
+        EmfCreator.class.getClassLoader().getResourceAsStream("properties-from-pom.properties");
     pomProperties = new Properties();
     try {
       pomProperties.load(is);

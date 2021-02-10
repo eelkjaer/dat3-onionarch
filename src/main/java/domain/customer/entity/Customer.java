@@ -1,12 +1,12 @@
 package domain.customer.entity;
 
-import onionarch.dto.CustomerDTO;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import onionarch.dto.CustomerDTO;
 
 @Entity
 @Table(name = "customer")

@@ -2,10 +2,10 @@ package ui.rest;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-import onionarch.Onionarch;
 import infrastructure.EmfCreator;
 import infrastructure.ORMCustomer;
 import javax.persistence.EntityManagerFactory;
+import onionarch.Onionarch;
 import org.slf4j.Logger;
 
 public class BaseResource {
