@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "domain.customer")
+@Table(name = "customer")
 public class Customer {
 
   private static final int serialVersionUID = 1;
