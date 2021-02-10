@@ -14,9 +14,13 @@ public class Onionarch {
   }
 
   public List<CustomerDTO> getAllCustomers() throws CustomerException {
-    return customerRepository.getAllCustomers().stream()
-        .map(CustomerDTO::new)
-        .collect(Collectors.toList());
+    try {
+      return customerRepository.getAllCustomers().stream()
+          .map(CustomerDTO::new)
+          .collect(Collectors.toList());
+    } catch (domain.customer.exceptions.CustomerNotFound customerNotFound) {
+      customerNotFound.printStackTrace();
+    }
   }
 
   public CustomerDTO getCustomerById(int id) throws CustomerException {
