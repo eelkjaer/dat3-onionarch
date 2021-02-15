@@ -2,6 +2,9 @@ dist: bionic
 
 language: java
 
+notifications:
+  slack: datsem3spring2021:A1OV3mzfBymX76GSa9x5Fk4D
+
 cache:
   directories:  
     - $HOME/.m2
