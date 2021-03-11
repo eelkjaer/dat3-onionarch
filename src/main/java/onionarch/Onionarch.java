@@ -44,7 +44,7 @@ public class Onionarch {
     return customerRepository.updateCustomer(dto);
   }
 
-  public Object getCustomerByNumber(String accNum) throws CustomerNotFound {
+  public CustomerDTO getCustomerByNumber(String accNum) throws CustomerNotFound {
     return new CustomerDTO(customerRepository.getCustomerByAccountNumber(accNum));
   }
 }

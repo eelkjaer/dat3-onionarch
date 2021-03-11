@@ -54,8 +54,13 @@ public class CustomerResource extends BaseResource {
   @DELETE
   @Consumes({MediaType.APPLICATION_JSON})
   @Produces({MediaType.APPLICATION_JSON})
-  public Response deleteCustomer(@PathParam("id") int id) throws CustomerNotFound {
-    return Response.status(200).entity(API.deleteCustomerById(id)).build();
+  public String deleteCustomer(@PathParam("id") int id) throws CustomerNotFound {
+    boolean isdeleted = API.deleteCustomerById(id);
+    if(isdeleted){
+      return "{\"status\": \"ID " + id + " was removed\"}";
+    } else {
+      return "{\"status\": \"Error occured\"}";
+    }
   }
 
   @Path("{id}")
@@ -65,7 +70,8 @@ public class CustomerResource extends BaseResource {
   @Produces({MediaType.APPLICATION_JSON})
   public Response updateCustomer(@PathParam("id") int id, String customer) throws CustomerNotFound {
     CustomerDTO dto = GSON.fromJson(customer, CustomerDTO.class);
-    return Response.status(200).entity(API.updateCustomerById(id, dto)).build();
+    dto = API.updateCustomerById(id, dto);
+    return Response.ok(dto).build();
   }
 
   // @RolesAllowed("ADMIN")
@@ -81,7 +87,8 @@ public class CustomerResource extends BaseResource {
     String accNum = String.format("%d-%d", regNo, accNo);
     dto.setAccountNumber(accNum);
     API.createCustomer(dto);
+    dto = API.getCustomerByNumber(accNum);
 
-    return Response.status(200).entity(API.getCustomerByNumber(accNum)).build();
+    return Response.ok(dto).build();
   }
 }
