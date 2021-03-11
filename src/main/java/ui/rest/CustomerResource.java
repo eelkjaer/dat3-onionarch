@@ -5,8 +5,11 @@ import static onionarch.Utils.GSON;
 import domain.customer.exceptions.CustomerException;
 import domain.customer.exceptions.CustomerNotFound;
 import java.util.Random;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -46,26 +49,28 @@ public class CustomerResource extends BaseResource {
     return Response.status(200).entity(GSON.toJson(API.getAllCustomers())).build();
   }
 
-  @Path("{id}/delete")
+  @Path("{id}")
   // @RolesAllowed("ADMIN")
-  @POST
+  @DELETE
+  @Consumes({MediaType.APPLICATION_JSON})
   @Produces({MediaType.APPLICATION_JSON})
   public Response deleteCustomer(@PathParam("id") int id) throws CustomerNotFound {
     return Response.status(200).entity(API.deleteCustomerById(id)).build();
   }
 
-  @Path("{id}/update")
+  @Path("{id}")
   // @RolesAllowed("ADMIN")
-  @POST
+  @PUT
+  @Consumes({MediaType.APPLICATION_JSON})
   @Produces({MediaType.APPLICATION_JSON})
   public Response updateCustomer(@PathParam("id") int id, String customer) throws CustomerNotFound {
     CustomerDTO dto = GSON.fromJson(customer, CustomerDTO.class);
     return Response.status(200).entity(API.updateCustomerById(id, dto)).build();
   }
 
-  @Path("create")
   // @RolesAllowed("ADMIN")
   @POST
+  @Consumes({MediaType.APPLICATION_JSON})
   @Produces({MediaType.APPLICATION_JSON})
   public Response createNewCustomer(String customer) throws CustomerNotFound, CustomerException {
     CustomerDTO dto = GSON.fromJson(customer, CustomerDTO.class);

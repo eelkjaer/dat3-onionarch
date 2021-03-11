@@ -1,4 +1,4 @@
-POST /dat3_onionarch/api/customer/create HTTP/1.1
+PUT /dat3_onionarch/api/customer HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
 Content-Length: 105

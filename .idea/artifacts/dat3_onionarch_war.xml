@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="dat3-onionarch-1.0.war">
+    <root id="archive" name="dat3-onionarch-1.0.1.war">
       <element id="artifact" artifact-name="dat3-onionarch:war exploded" />
     </root>
   </artifact>

@@ -19,6 +19,7 @@ public class ApplicationConfig extends Application {
    * defined in the project. If required, comment out calling this method in getClasses().
    */
   private void addRestResourceClasses(Set<Class<?>> resources) {
+    resources.add(CorsFilter.class);
     resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
     resources.add(BaseResource.class);
     resources.add(CustomerResource.class);
